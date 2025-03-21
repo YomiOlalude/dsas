@@ -1,27 +1,22 @@
 # Notes
 """
 Summary
-- LIFO
-- Stack is more like a concept of LIFO and can be done with
-  SLLs, DLLs, arrays, etc
+- FIFO
 Uses:
-- Manages function execution and recursion
-- Stores previous states for reverting changes
-- Used in calculators and compilers
-- Validates code structure
-- Manages local variables efficiently
-- Undo/Redo
-- Browser history
+- Message brokers like RabbitMQ, Kafka, and AWS SQS use
+  queues to handle async communication
+- Web servers queue incoming requests before processing them
+- Customer service calls are queued in FIFO order
 """
 
 
 class Node:
     def __init__(self, value):
         self.value = value
-        self.next = None
+        self.next = 0
 
 
-class Stack:
+class Queue:
     def __init__(self):
         self.first = None
         self.last = None
@@ -36,20 +31,20 @@ class Stack:
             current = current.next
         return " -> ".join(values)
 
-    def unshift(self, value):
+    def enqueue(self, value):
         node = Node(value)
 
         if not self.first:
             self.first = node
             self.last = self.first
         else:
-            temp = self.first
-            self.first = node
-            self.first.next = temp
+            last = self.last
+            last.next = node
+            self.last = node
 
         return self.size + 1
 
-    def shift(self):
+    def dequeue(self):
         if not self.first:
             return False
 
