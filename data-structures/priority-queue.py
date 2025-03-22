@@ -4,7 +4,7 @@
 - A data structure where each element has a priority
 - Elements with higher priority are served before elements with
   lower priority
-- It's more like a concept, can be done with heaps or least, but
+- It's more like a concept, can be done with heaps or trees, but
   it's better with heaps for better performance
 Uses:
 - Task scheduling
