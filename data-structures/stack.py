@@ -12,6 +12,11 @@ Uses:
 - Manages local variables efficiently
 - Undo/Redo
 - Browser history
+BigO:
+- Insertion: O(1)
+- Removal: O(1)
+- Search: O(n)
+- Access(eg. index): O(n)
 """
 
 

@@ -29,6 +29,9 @@ Summary
 - Every node to the right is always greater than the parent
 Uses:
 - Searching
+BigO:
+- Insertion: O(log n)
+- Search: O(log n)
 """
 
 

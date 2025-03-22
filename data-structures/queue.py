@@ -7,6 +7,11 @@ Uses:
   queues to handle async communication
 - Web servers queue incoming requests before processing them
 - Customer service calls are queued in FIFO order
+BigO:
+- Insertion: O(1)
+- Removal: O(1)
+- Search: O(n)
+- Access(eg. index): O(n)
 """
 
 

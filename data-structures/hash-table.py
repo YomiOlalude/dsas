@@ -7,6 +7,10 @@
   consistent (same outpu with same input)
 Uses
 - Storing values
+Big O:
+- Insertion: O(1)
+- Deletion: O(1)
+- Access: O(1)
 """
 
 

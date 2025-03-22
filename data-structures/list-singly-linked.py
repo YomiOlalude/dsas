@@ -9,6 +9,11 @@ Uses:
 - Low-level memory management (dynamic memory allocation)
 - Undo feature in applications (storing previous states)
 - Managing a queue of print jobs in a printer spooler
+BigO:
+- Insertion: O(1)
+- Removal: O(1) or O(n)
+- Search: O(n)
+- Access(eg. index): O(n)
 """
 
 

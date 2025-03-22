@@ -31,6 +31,9 @@ def factorial(num):
 
 
 def fibonacci_array(n):
+    """
+    fibonacci_array(7) -> [0, 1, 1, 2, 3, 5, 8]
+    """
     if n <= 0:
         return []
     elif n == 1:
@@ -44,6 +47,9 @@ def fibonacci_array(n):
 
 
 def fibonacci_add(n, memo=None):
+    """
+    fibonacci_add(7) -> [0 + 1 + 1 + 2 + 3 + 5 + 8]
+    """
     if memo is None:
         memo = {}
 

@@ -7,6 +7,11 @@ Uses:
 - Enables moving forward and backward between visited pages
 - Used in text editors, graphic design tools, and IDEs
 - Supports previous and next track navigation
+BigO:
+- Insertion: O(1)
+- Removal: O(1)
+- Search: O(n)
+- Access(eg. index): O(n)
 """
 
 

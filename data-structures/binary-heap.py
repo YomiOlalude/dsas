@@ -12,6 +12,10 @@
 - For any index n of an array, the parent is at (n - 1) // 2
 Uses:
 - Used to implement priority queues
+Big O:
+- Insertion: O(log n)
+- Removal: O(log n)
+- Search: O(n)
 """
 
 
