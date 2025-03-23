@@ -6,6 +6,9 @@ def linear_search(arr, target):
 
 
 def binary_search(arr, num):
+    """
+    return index of num in arr
+    """
     left = 0
     right = len(arr) - 1
 

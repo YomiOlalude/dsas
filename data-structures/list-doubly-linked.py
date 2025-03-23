@@ -82,6 +82,7 @@ class DLL:
             self.head = self.head.next
             self.head.prev = None
             node.next = None
+
         self.length -= 1
         return node
 
@@ -117,7 +118,6 @@ class DLL:
             while counter != index:
                 current = current.prev
                 counter -= 1
-
         return current
 
     def set(self, index, value):
