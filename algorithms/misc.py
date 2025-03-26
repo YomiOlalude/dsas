@@ -43,6 +43,42 @@ def frequency_counter(iterable):
     return result
 
 
+def permutation(arr):
+    """
+    return 'permutation' of arr in 2s
+    [1,2,3,4] --> [(1,2), (1,3), (2,1), (2,3), (3,1), (3,2)]
+    """
+    result = []
+    for num in arr:
+        for i in range(len(arr)):
+            if arr.index(num) != i:
+                result.append([num, arr[i]])
+    return result
+
+
+def two_pointer_has_pair_with_sum(arr, target):
+    """
+    return True if array has 2 numbers that add up to target
+    """
+    left = 0
+    right = len(arr) - 1
+    result = False
+
+    while left < right:
+        total = arr[left] + arr[right]
+
+        if total < target:
+            left += 1
+            continue
+        elif total > target:
+            right -= 1
+            continue
+        else:
+            result = True
+            return [arr[left], arr[right]]
+    return result
+
+
 def are_anagrams(string1, string2):
     string1_freq = Counter(string1)
     string2_freq = Counter(string2)
@@ -86,5 +122,4 @@ def traverse_matrix(matrix):
             for i in range(bottom, top - 1, -1):
                 result.append(matrix[i][left])
             left += 1
-
     return result
