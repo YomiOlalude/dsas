@@ -46,7 +46,6 @@ class Queue:
             last = self.last
             last.next = node
             self.last = node
-
         return self.size + 1
 
     def dequeue(self):

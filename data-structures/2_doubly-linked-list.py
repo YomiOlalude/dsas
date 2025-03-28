@@ -42,13 +42,12 @@ class DLL:
 
         if not self.head:
             self.head = node
-            self.length += 1
             self.tail = self.head
-            return self
+        else:
+            self.tail.next = node
+            node.prev = self.tail
+            self.tail = node
 
-        self.tail.next = node
-        node.prev = self.tail
-        self.tail = node
         self.length += 1
         return self
 
@@ -102,7 +101,7 @@ class DLL:
 
     def get(self, index):
         if index < 0 or index >= self.length:
-            return None
+            return IndexError("Index it out of range")
 
         if index <= self.length // 2:
             current = self.head
@@ -130,7 +129,7 @@ class DLL:
 
     def insert(self, index, value):
         if index < 0 or index > self.length:
-            return None
+            return IndexError("Index it out of range")
 
         if index == 0:
             return self.unshift(value)
@@ -141,10 +140,10 @@ class DLL:
         node = Node(value)
 
         found_node = self.get(index)
-        prev_found_node = found_node.prev
+        found_node_prev = found_node.prev
 
-        prev_found_node.next = node
-        node.prev = prev_found_node
+        found_node_prev.next = node
+        node.prev = found_node_prev
 
         node.next = found_node
         found_node.prev = node

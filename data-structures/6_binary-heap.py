@@ -2,7 +2,7 @@
 """
 - A heap is a special kind of binary tree that satisfies the heap property
 - Each parent has at most 2 child nodes
-- The value of each parent node is always greter than
+- The value of each parent node is always greater than
   its child nodes in max binary heap
 - In min binary heap, the parent node is always less than the children
 - No order to sibling nodes
@@ -17,6 +17,8 @@ Big O:
 - Removal: O(log n)
 - Search: O(n)
 """
+
+import heapq
 
 
 class MaxBinaryHeap:
@@ -81,3 +83,46 @@ class MaxBinaryHeap:
             self.values[index] = self.values[swap]
             self.values[swap] = node
             index = swap
+
+
+# Heaps with native Python module
+
+# Min Binary Heap
+min_heap = []
+
+heapq.heappush(min_heap, 3)
+heapq.heappush(min_heap, 4)
+heapq.heappush(min_heap, 1)
+heapq.heappush(min_heap, 2)
+heapq.heappush(min_heap, 5)
+
+# Max Binary Heap
+# 1: Use the negative value
+max_heap1 = []
+
+heapq.heappush(max_heap1, -11)
+heapq.heappush(max_heap1, -7)
+heapq.heappush(max_heap1, -3)
+heapq.heappush(max_heap1, -8)
+heapq.heappush(max_heap1, -10)
+heapq.heappush(max_heap1, -6)
+
+print(-heapq.heappop(max_heap1))  # prints largest value
+
+# 2: Use a tuple with negative priorities
+max_heap2 = []
+
+heapq.heappush(max_heap2, (-5, 5))
+heapq.heappush(max_heap2, (-1, 1))
+heapq.heappush(max_heap2, (-2, 2))
+heapq.heappush(max_heap2, (-4, 4))
+heapq.heappush(max_heap2, (-3, 3))
+heapq.heappush(max_heap2, (-6, 6))
+
+print(max_heap2[0])  # prints largest value's tuple
+print(heapq.heappop(max_heap2)[1])  # prints largest value
+
+# Build a heap from an existing list
+heap_arr = [5, 4, 3, 2, 1]
+
+heapq.heapify(heap_arr)

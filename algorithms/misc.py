@@ -97,6 +97,13 @@ def traverse_matrix(matrix):
     ]
     -> [1, 2, 3, 4, 5, 6, 7, 8, 9]
     """
+
+    def safe_get(arr, index):
+        try:
+            return arr[index]
+        except IndexError:
+            return None
+
     if not matrix or not matrix[0]:
         return []
 
@@ -106,20 +113,41 @@ def traverse_matrix(matrix):
 
     while top <= bottom and left <= right:
         for i in range(left, right + 1):
-            result.append(matrix[top][i])
+            result.append(safe_get(matrix[top], i))
         top += 1
 
         for i in range(top, bottom + 1):
-            result.append(matrix[i][right])
+            result.append(safe_get(matrix[i], right))
         right -= 1
 
         if top <= bottom:
             for i in range(right, left - 1, -1):
-                result.append(matrix[bottom][i])
+                result.append(safe_get(matrix[bottom], i))
             bottom -= 1
 
         if left <= right:
             for i in range(bottom, top - 1, -1):
-                result.append(matrix[i][left])
+                result.append(safe_get(matrix[i], left))
             left += 1
     return result
+
+
+def max_non_overlapping_intervals(intervals):
+    """
+    find the maximum number of non-overlapping intervals.
+    max_non_overlapping_intervals([[1, 10], [0, 30], [15, 20]]) -> 2
+    """
+    if not intervals:
+        return 0
+
+    intervals.sort(key=lambda x: x[1])
+
+    count = 0
+    last_end_time = float("-inf")
+
+    for start, end in intervals:
+        if start >= last_end_time:
+            count += 1
+            last_end_time = end
+
+    return count

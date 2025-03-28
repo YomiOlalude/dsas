@@ -51,7 +51,6 @@ class Stack:
             temp = self.first
             self.first = node
             self.first.next = temp
-
         return self.size + 1
 
     def shift(self):

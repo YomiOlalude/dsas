@@ -27,6 +27,7 @@ Summary
 - Children are sorted from left to right
 - Every node to the left is always smaller than the parent
 - Every node to the right is always greater than the parent
+- No duplicates
 Uses:
 - Searching
 BigO:
@@ -104,7 +105,7 @@ class BST:
 
     def bfs(self):
         """
-        breadth first search
+        breadth first search: returns all values searching breadth first
         """
         queue = []
         result = []
@@ -167,7 +168,7 @@ class BST:
         """
         - depth first search inorder
         - traverses left side first
-        - list end up in order
+        - list ends up in order
         """
 
         result = []

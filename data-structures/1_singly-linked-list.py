@@ -32,10 +32,23 @@ class SLL:
     def __repr__(self):
         values = []
         current = self.head
+
         while current:
             values.append(str(current.value))
             current = current.next
         return " -> ".join(values)
+
+    def __str__(self):
+        result = ""
+        current = self.head
+
+        while current:
+            if current.next:
+                result += str(current.value) + " -> "
+            else:
+                result += str(current.value)
+            current = current.next
+        return result
 
     def append(self, value):
         new_node = Node(value)
@@ -95,7 +108,7 @@ class SLL:
 
     def get(self, index):
         if index > self.length or index < 0:
-            return None
+            return IndexError("Index it out of range")
 
         if index == 0:
             return self.head
@@ -118,7 +131,7 @@ class SLL:
 
     def insert(self, index, value):
         if index < 0 or index > self.length:
-            return False
+            return IndexError("Index it out of range")
 
         if index == self.length:
             return self.append(value)
@@ -136,7 +149,7 @@ class SLL:
 
     def remove(self, index):
         if index < 0 or index >= self.length:
-            return None
+            return IndexError("Index it out of range")
 
         if index == 0:
             return self.shift()
