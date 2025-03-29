@@ -151,3 +151,75 @@ def max_non_overlapping_intervals(intervals):
             last_end_time = end
 
     return count
+
+
+class NumberToWords:
+    """
+    1234 returns 'One Thousand Thirty Four'
+    """
+
+    def __init__(self):
+        self.units = {
+            0: "Zero",
+            1: "One",
+            2: "Two",
+            3: "Three",
+            4: "Four",
+            5: "Five",
+            6: "Six",
+            7: "Seven",
+            8: "Eight",
+            9: "Nine",
+        }
+        self.teens = {
+            0: "Ten",
+            1: "Eleven",
+            2: "Twelve",
+            3: "Thirteen",
+            4: "Fourteen",
+            5: "Fifteen",
+            6: "Sixteen",
+            7: "Seventeen",
+            8: "Eighteen",
+            9: "Nineteen",
+        }
+        self.tens = {
+            0: "",
+            1: "",
+            2: "Twenty",
+            3: "Thirty",
+            4: "Forty",
+            5: "Fifty",
+            6: "Sixty",
+            7: "Seventy",
+            8: "Eighty",
+            9: "Ninety",
+        }
+        self.thousands = ["", "Thousand", "Million", "Billion", "Trillion"]
+
+    def number_to_words(self, num: int) -> str:
+        num_is_negative = num < 0
+        num = abs(num)
+
+        if num == 0:
+            return self.units[0]
+
+        result = ""
+
+        for i in range(len(self.thousands)):
+            if num % 1000 != 0:
+                result = self.helper(num % 1000) + self.thousands[i] + " " + result
+            num = num // 1000
+        return "Minus " + result.strip() if num_is_negative else result.strip()
+
+    def helper(self, num: int) -> str:
+        if num == 0:
+            return ""
+        elif num < 10:
+            return self.units[num] + " "
+        elif num < 20:
+            return self.teens[num - 10] + " "
+        elif num < 100:
+            return self.tens[num // 10] + " " + self.helper(num % 10)
+        else:
+            return self.units[num // 100] + " Hundred " + self.helper(num % 100)

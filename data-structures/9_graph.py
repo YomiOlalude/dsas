@@ -11,7 +11,7 @@ Graph Terms
 - Adjacency list can be like the:
  {
   "A": ["B", "C"],
-  "B": ["C", "D"]
+  "B": ["A", "D"]
   }
   or
  [
@@ -101,7 +101,6 @@ class Graph:
                 if neighbor not in visited:
                     visited[neighbor] = True
                     stack.append(neighbor)
-
         return result
 
     def breadth_first_traversal(self, start_vertex):
@@ -119,5 +118,4 @@ class Graph:
                 if neighbor not in visited:
                     visited[neighbor] = True
                     queue.append(neighbor)
-
         return result

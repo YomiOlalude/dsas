@@ -173,3 +173,24 @@ class DLL:
 
         self.length -= 1
         return True
+
+    def insert_in_middle(self, value):
+        node = Node(value)
+
+        if not self.head:
+            self.head = node
+            self.tail = node
+            return self
+
+        start = self.head
+        end = self.tail
+
+        while start != end and start.next != end:
+            start = start.next
+            end = end.prev
+
+        end = start.next
+        start.next = node
+        node.next = end
+        end.prev = node
+        return self

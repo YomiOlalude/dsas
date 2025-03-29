@@ -173,3 +173,23 @@ class SLL:
 
         self.head = prev
         return True
+
+    def insert_in_middle(self, value):
+        node = Node(value)
+
+        if not self.head:
+            self.head = node
+            return self
+
+        slow = self.head
+        fast = self.head
+        prev = False
+
+        while fast and fast.next:
+            prev = slow
+            slow = slow.next
+            fast = fast.next.next
+
+        node.next = prev.next
+        prev.next = node
+        return self
