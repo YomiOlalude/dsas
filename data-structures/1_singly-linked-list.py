@@ -62,6 +62,22 @@ class SLL:
         self.length += 1
         return self
 
+    def append2(self, value):
+        node = Node(value)
+
+        if not self.head:
+            self.head = node
+            return self
+
+        current = self.head
+
+        while current.next:
+            current = current.next
+
+        current.next = node
+        self.length += 1
+        return self
+
     def pop(self):
         if not self.head:
             return None
@@ -192,4 +208,20 @@ class SLL:
 
         node.next = prev.next
         prev.next = node
+        return self
+
+    def insert_in_middle2(self, value):
+        node = Node(value)
+
+        if not self.head:
+            self.head = node
+            return self
+
+        middle = self.length // 2
+        prev = self.get(middle)
+
+        prev_next = prev.next
+        prev.next = node
+        node.next = prev_next
+        self.length += 1
         return self

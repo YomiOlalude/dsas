@@ -21,7 +21,7 @@ class Singleton:
 class Factory:
     """
     - Creates objects without exposing class names
-    - Used when we don’t know the exact class type at runtime
+    - Used when we do not know the exact class type at runtime
     """
 
     @staticmethod

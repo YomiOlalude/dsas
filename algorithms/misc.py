@@ -132,6 +132,14 @@ def traverse_matrix(matrix):
     return result
 
 
+def rotate_matrix(matrix):
+    length = len(matrix)
+    for i in range(length):
+        for j in range(i, length):
+            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+    return matrix
+
+
 def max_non_overlapping_intervals(intervals):
     """
     find the maximum number of non-overlapping intervals.
@@ -223,3 +231,20 @@ class NumberToWords:
             return self.tens[num // 10] + " " + self.helper(num % 10)
         else:
             return self.units[num // 100] + " Hundred " + self.helper(num % 100)
+
+
+def return_max_overlapping_threads(threads):
+    """
+    returns the max possible number of concurrent threads
+    [(1,4), (3,5), (2,7), (8,9)] --> 3
+    """
+    threads_list = []
+
+    for thread in threads:
+        for item in list(range(thread[0], thread[1] + 1)):
+            threads_list.append(item)
+
+    frequencies = Counter(threads_list)
+    max_frequency = max(frequencies, key=frequencies.get)
+
+    return frequencies[max_frequency] if frequencies[max_frequency] > 1 else 0

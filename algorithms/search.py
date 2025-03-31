@@ -30,8 +30,8 @@ def short_string_in_long_string(long, short):
     """
     Returns index of a short string in a long string
     """
-    for _ in range(len(long)-1):
-        for j in range(len(long)-2):
-            if long[j] + long[j+1] + long[j+2] == short:
+    for _ in range(len(long) - 1):
+        for j in range(len(long) - 2):
+            if long[j] + long[j + 1] + long[j + 2] == short:
                 return j
     return -1

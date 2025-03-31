@@ -89,19 +89,15 @@ class BST:
             return None
 
         current = self.root
-        found = False
 
-        while current and not found:
+        while current:
             if value < current.value:
                 current = current.left
             elif value > current.value:
                 current = current.right
             else:
-                found = True
-
-        if not found:
-            return False
-        return True
+                return True
+        return False
 
     def bfs(self):
         """
