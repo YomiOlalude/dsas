@@ -27,7 +27,7 @@ class WeightedVertex:
 class WeightedGraph:
     """
     Steps
-    - Every time we look to visit a new vertexx, we pick the vertex with the smallest known distance
+    - Every time we look to visit a new vertex, we pick the vertex with the smallest known distance
       to visit first (which starts with itself with distance of 0)
     - Once we've moved to the vertex we're going to visit, we look at each of its neighbors
     - For each neighboring vertex, we calculate the distance by summing the total edges that lead to
@@ -56,12 +56,12 @@ class WeightedGraph:
 
     def __init__(self):
         self.adjacency_list: dict[str, list[WeightedVertex]] = {}
-        self.ordered_vertices: list[WeightedVertex] = []
+        self.ordered_vertices_queue: list[WeightedVertex] = []
 
     def __enqueue(self, vertex: str, weight: int):
-        self.ordered_vertices.append({"vertex": vertex, "weight": weight})
-        self.ordered_vertices.sort(key=lambda vertex: vertex["weight"])
-        return self.ordered_vertices
+        self.ordered_vertices_queue.append({"vertex": vertex, "weight": weight})
+        self.ordered_vertices_queue.sort(key=lambda vertex: vertex["weight"])
+        return self.ordered_vertices_queue
 
     def add_vertex(self, vertex: str):
         if vertex not in self.adjacency_list:
@@ -78,7 +78,7 @@ class WeightedGraph:
 
     def dijkstra(self, start: str, end: str):
         # stores the vertices current shortest path to get to a vertix e.g {vertex2: vertex1, vertex3}
-        previous = {}
+        shortest_path_mapping = {}
         # stores the vertices current shortest distance to get to a vertix e.g {vertex2: vertex1, 3}
         distances = {}
         result = []
@@ -94,19 +94,18 @@ class WeightedGraph:
                 self.__enqueue(vertex, 0)
             else:
                 distances[vertex] = inf
-                self.ordered_vertices
                 self.__enqueue(vertex, inf)
-            previous[vertex] = None
+            shortest_path_mapping[vertex] = None
 
         # as long as there's something to visit
-        while self.ordered_vertices:
-            smallest_vertex = self.ordered_vertices.pop(0)["vertex"]
+        while self.ordered_vertices_queue:
+            smallest_vertex = self.ordered_vertices_queue.pop(0)["vertex"]
 
             # end of process
             if smallest_vertex == end:
-                while previous[smallest_vertex]:
+                while shortest_path_mapping[smallest_vertex]:
                     result.append(smallest_vertex)
-                    smallest_vertex = previous[smallest_vertex]
+                    smallest_vertex = shortest_path_mapping[smallest_vertex]
                 break
 
             if smallest_vertex:
@@ -119,11 +118,11 @@ class WeightedGraph:
                         # updating new smallest_vertex distance to neighbor
                         distances[neighbor_vertex] = new_distance
                         # updating previous - How we got to the neighbor
-                        previous[neighbor_vertex] = smallest_vertex
+                        shortest_path_mapping[neighbor_vertex] = smallest_vertex
                         # enqueue in weight queue with new weight
                         self.__enqueue(neighbor_vertex, new_distance)
         result.reverse()
-        return [smallest_vertex] + result
+        return [start] + result
 
 
 wg = WeightedGraph()

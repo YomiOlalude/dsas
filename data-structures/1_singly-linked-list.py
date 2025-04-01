@@ -188,7 +188,7 @@ class SLL:
             current = next_node
 
         self.head = prev
-        return True
+        return self
 
     def insert_in_middle(self, value):
         node = Node(value)
