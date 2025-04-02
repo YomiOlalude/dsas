@@ -59,6 +59,7 @@ def permutation(arr):
 def two_pointer_has_pair_with_sum(arr, target):
     """
     return True if array has 2 numbers that add up to target
+    - only works with a sorted list
     """
     left = 0
     right = len(arr) - 1
