@@ -63,10 +63,10 @@ class SLL:
         return self
 
     def append2(self, value):
-        node = Node(value)
+        new_node = Node(value)
 
         if not self.head:
-            self.head = node
+            self.head = new_node
             return self
 
         current = self.head
@@ -74,7 +74,7 @@ class SLL:
         while current.next:
             current = current.next
 
-        current.next = node
+        current.next = new_node
         self.length += 1
         return self
 
@@ -123,8 +123,8 @@ class SLL:
         return self
 
     def get(self, index):
-        if index > self.length or index < 0:
-            return IndexError("Index it out of range")
+        if index >= self.length or index < 0:
+            return IndexError("Index is out of range")
 
         if index == 0:
             return self.head
